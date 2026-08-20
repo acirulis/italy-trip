@@ -387,11 +387,11 @@ export const DEFAULT_ROUTES: RouteItem[] = [
       },
       {
         url: '/images/sarteano/sarteano-castle-drawbridge-entrance.jpg',
-        caption: 'Fortified stone drawbridge and ancient entry gate to the inner castle courtyard',
+        caption: 'Battlemented curtain wall and the arched entry gate on the approach to the inner courtyard',
       },
       {
         url: '/images/sarteano/sarteano-castle-rock-cut-moat.jpg',
-        caption: 'Deep rock-cut defensive dry moat protecting the northern flank of the fortress',
+        caption: 'The view from the castle walls across Sarteano’s tiled rooftops toward Monte Cetona',
       },
       {
         url: '/images/sarteano/sarteano-porta-umbra-gate.jpg',
@@ -429,19 +429,19 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     gallery: [
       {
         url: '/images/monte-cetona/cave-stone.jpg',
-        caption: 'Prehistoric Belverde Caves: authentic travertine rock caverns and shelters at Monte Cetona',
+        caption: 'Eremo di Santa Maria in Belverde: the stone hermitage set among cypresses beside the prehistoric cave complex',
       },
       {
         url: '/images/monte-cetona/cave-interior.jpg',
-        caption: 'Grotta di San Francesco: interior cave chamber and geological formations',
+        caption: 'The southern crest of Monte Cetona rising above the travertine terraces that hold the Belverde shelters',
       },
       {
         url: '/images/monte-cetona/cave-gorge.jpg',
-        caption: 'Grotte di Belverde canyon trail passing natural rock shelters and karst formations',
+        caption: 'Monte Cetona seen across the Val di Chiana, its wooded flanks concealing the Belverde rock shelters',
       },
       {
         url: '/images/monte-cetona/slide-parco.jpg',
-        caption: 'Belverde Archeological and Naturalistic Park grounds and ancient woodland paths',
+        caption: 'The wooded eastern slopes of Monte Cetona, where the Belverde park trails climb away from the caves',
       },
       {
         url: '/images/monte-cetona/monte-cetona-summit-view.jpg',
@@ -449,7 +449,7 @@ export const DEFAULT_ROUTES: RouteItem[] = [
       },
       {
         url: '/images/monte-cetona/cetona-historic-village-stone-streets.jpg',
-        caption: 'Cetona medieval borgo: historic stone stairways and alleys adorned with flowers',
+        caption: 'Cetona’s medieval Rivellino tower standing guard over the lanes of the old borgo',
       },
       {
         url: '/images/monte-cetona/cetona-medieval-piazza-garibaldi.jpg',
@@ -457,7 +457,7 @@ export const DEFAULT_ROUTES: RouteItem[] = [
       },
       {
         url: '/images/monte-cetona/monte-cetona-olive-slopes.jpg',
-        caption: 'Terraced olive groves stretching across the lower slopes of Monte Cetona',
+        caption: 'The south-western flank of Monte Cetona (1,148m) above its olive terraces and oak woods',
       },
     ],
   },

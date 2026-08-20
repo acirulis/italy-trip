@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RouteImage } from '../types';
 import { withBasePath } from '../utils/assets';
 import { ChevronLeft, ChevronRight, Maximize2, X, Image as ImageIcon } from 'lucide-react';
+import { handleImageError } from '../utils/imageFallback';
 
 interface ImageGalleryProps {
   mainPhotoUrl?: string;
@@ -89,6 +90,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
           src={currentImage.url}
           alt={currentImage.caption || `${title} photo ${currentIndex + 1}`}
           referrerPolicy="no-referrer"
+          onError={handleImageError}
           className="w-full h-full object-cover transition-opacity duration-300"
           loading="lazy"
         />
@@ -161,6 +163,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
                   src={img.url}
                   alt={`Thumbnail ${idx + 1}`}
                   referrerPolicy="no-referrer"
+          onError={handleImageError}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -209,6 +212,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               src={currentImage.url}
               alt={currentImage.caption || title}
               referrerPolicy="no-referrer"
+          onError={handleImageError}
               className="max-h-[78vh] max-w-full object-contain rounded-lg shadow-2xl transition-all"
             />
 

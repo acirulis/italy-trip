@@ -13,6 +13,7 @@ import {
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
+import { handleImageError } from '../utils/imageFallback';
 
 interface RouteCardProps {
   route: RouteItem;
@@ -131,6 +132,7 @@ export const RouteCard: React.FC<RouteCardProps> = ({
               src={currentDisplayPhoto}
               alt={route.title}
               referrerPolicy="no-referrer"
+          onError={handleImageError}
               className="w-full h-full object-cover group-hover/image:scale-105 transition-transform duration-500"
               loading="lazy"
             />
