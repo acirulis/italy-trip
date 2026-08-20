@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RouteItem } from '../types';
 import { getWazeUrl, getGoogleMapsDirUrl } from '../utils/navigation';
+import { withBasePath } from '../utils/assets';
 import { 
   Navigation, 
   Clock, 
@@ -53,7 +54,7 @@ export const RouteCard: React.FC<RouteCardProps> = ({
     if (route.photoUrl && !list.includes(route.photoUrl)) {
       list.unshift(route.photoUrl);
     }
-    return list;
+    return list.map(withBasePath);
   }, [route.gallery, route.photoUrl]);
 
   const [activeImgIndex, setActiveImgIndex] = useState(0);
