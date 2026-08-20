@@ -1,0 +1,51 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this is
+
+A single-page React + Vite app ("Italy Trip Hub") that acts as a route companion for a Tuscany trip: one *living base* location plus a catalog of day-trip routes (thermal springs, hikes, hill towns, wine), each with an interactive Leaflet map, real driving geometry, and deep links to Waze / Google Maps / Apple Maps.
+
+Originated as a Google AI Studio app (see `README.md`, `metadata.json`). Despite `@google/genai` and `express` being in `package.json`, **there is no server and no Gemini call anywhere in `src/`** — it is a purely client-side static app. Don't assume a backend exists.
+
+## Commands
+
+```bash
+npm install          # or `bun install` — bun.lock is the committed lockfile, but bun may not be on PATH
+npm run dev          # vite on port 3000, host 0.0.0.0
+npm run build
+npm run preview
+npm run lint         # tsc --noEmit — this is the only check; there is no test suite and no ESLint
+```
+
+There are no tests. `npm run lint` (type-check) is the verification step for any change.
+
+`DISABLE_HMR=true` disables both HMR and file watching (`vite.config.ts`); it exists for AI Studio's agent-edit environment. Leave that block alone.
+
+## Architecture
+
+State lives entirely in `src/App.tsx` — there is no store, router, or context. Everything below flows from props.
+
+**Persistence & the merge-on-load rule.** Two `localStorage` keys: `italy_base_location` and `italy_trip_routes`. On boot, saved routes are *merged over* `DEFAULT_ROUTES` by `id` rather than replacing them: the saved copy wins for user-edited fields, but `photoUrl`, `gallery`, and `isPrimaryPick` are always taken from `defaultRoutes.ts`, and user routes (`isUserCreated`) are appended. This is deliberate — it lets edits to curated content ship to returning users. If you add a field to `RouteItem` that must stay authoritative in code, add it to that override list in `App.tsx`; otherwise stale localStorage will shadow it.
+
+**Distances are computed, not authoritative.** The `distanceKm` / `drivingTimeMin` values in `defaultRoutes.ts` are seed values only — an effect in `App.tsx` recomputes every route whenever the base location changes, via `estimateDrivingDistanceAndMinutes` (Haversine × 1.32 winding factor, 45 km/h average). Selecting a route then calls `fetchDrivingRouteCoordinates`, which hits the public OSRM demo server (`router.project-osrm.org`) with a 4s abort and silently falls back to a straight line plus the estimate. Any code touching distance must tolerate both sources.
+
+**Components** (`src/components/`) are presentational and receive `baseLocation` + callbacks:
+- `InteractiveMap.tsx` — imperative Leaflet, mounted via refs (`mapInstanceRef`, layer-group refs), not react-leaflet. Separate effects own init, tile-layer swap, markers, and the active polyline; keep that separation when editing. Tile layers are defined in the local `TILE_CONFIG` map, keyed by `MapTileLayerType`. Clicking bare map emits coordinates that prefill the add-route modal.
+- `RouteCard.tsx` / `RouteDetailModal.tsx` / `ImageGallery.tsx` / `LivingBaseCard.tsx` / `AddRouteModal.tsx` — user routes get `id: custom-<timestamp>` and `isUserCreated: true`.
+
+**Navigation links** are all generated in `src/utils/navigation.ts` (Waze/Google/Apple deep links, GPX export). Never hand-build a maps URL in a component. `getGoogleMapsDirUrl` prefers a route's curated `googleMapsUrl` when it points at google.com/maps.
+
+`src/types.ts` is the single source of truth for `RouteItem`, `BaseLocation`, `RouteCategory`, `MapTileLayerType`.
+
+## Content conventions
+
+`src/data/defaultRoutes.ts` is the curated content file — long, prose-heavy entries with `highlights` and `practicalTips` written in a travel-guide voice. New routes should match that density and tone.
+
+Images are static files under `public/images/<place-slug>/<descriptive-name>.jpg`, referenced as `/images/...`. Filenames are SEO-descriptive, not abbreviated. `gallery` entries accept either a bare URL string or `{ url, caption }`.
+
+## Styling
+
+Tailwind v4 via `@tailwindcss/vite` (no `tailwind.config.js`; `@import "tailwindcss"` in `src/index.css`). Colors are written as inline hex arbitrary values (`bg-[#FAF8F5]`, `text-[#B4643B]`) throughout the JSX; the warm Tuscan palette is also mirrored as CSS variables in `index.css`, and per-category color sets are duplicated in local helpers like `getCategoryTheme` in `RouteCard.tsx`. Match the surrounding hex-literal style rather than introducing a new theming layer. Leaflet's CSS and Google Fonts load from CDN in `index.html`.
+
+The `@` path alias resolves to the project root (not `src/`), though current code uses relative imports.

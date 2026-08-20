@@ -1,0 +1,6 @@
+{
+  "name": "Italy Trip Hub",
+  "description": "Interactive route companion for Tuscan living base and sightseeing/trekking itineraries with Waze navigation, travel times, and map layers.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-canvas: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-muted: #F2EFE9;
+    --text-primary: #333028;
+    --text-secondary: #6B665A;
+    --text-muted: #9E988A;
+    --color-sage: #607B57;
+    --color-sage-light: #EEF3EC;
+    --color-terracotta: #B4643B;
+    --color-terracotta-light: #FBF0E8;
+    --color-olive: #7B855A;
+    --border-warm: #E6E1D6;
+    --border-warm-subtle: #EFECE4;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #FAF8F5;
+    color: #333028;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
+}
+
+/* Custom leaflet map fixes and popup styling with Natural Tones */
+.leaflet-container {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #EFECE6 !important;
+}
+
+.custom-popup .leaflet-popup-content-wrapper {
+  background: #FFFFFF;
+  color: #333028;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px -5px rgba(51, 48, 40, 0.12), 0 8px 10px -6px rgba(51, 48, 40, 0.08);
+  padding: 0;
+  border: 1px solid #E6E1D6;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 12px 14px;
+  line-height: 1.45;
+}
+
+.custom-popup .leaflet-popup-tip {
+  background: #FFFFFF;
+}
+
+/* Pulse animation for living home marker with Natural Terracotta */
+@keyframes living-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(180, 100, 59, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 16px rgba(180, 100, 59, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(180, 100, 59, 0);
+  }
+}
+
+.living-pulse-icon {
+  animation: living-pulse 2s infinite;
+}
+
+
