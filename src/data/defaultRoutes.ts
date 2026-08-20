@@ -547,7 +547,8 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     lat: 42.4730557,
     lng: 13.5707703,
     distanceKm: 253,
-    drivingTimeMin: 195,
+    drivingTimeMin: 200,
+    curatedDrivingTimeMin: 200,
     hikingTimeMin: 360,
     trailDifficulty: 'Challenging',
     elevationGainM: 800,
@@ -573,6 +574,33 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     ],
     googleMapsUrl:
       'https://www.google.com/maps/place/Gran+Sasso+d’Italia/@42.4730557,13.5707703,16z/data=!4m6!3m5!1s0x1331d5ce065bedf7:0x97301345f28ca922!8m2!3d42.4730557!4d13.5707703!16s%2Fg%2F11vdnb2p80',
+    photoUrl: '/images/gran-sasso/corno-grande-summit-limestone-pyramid.jpg',
+    gallery: [
+      {
+        url: '/images/gran-sasso/corno-grande-summit-limestone-pyramid.jpg',
+        caption: 'Corno Grande rising in bare limestone above the grass slopes of Campo Imperatore, old snow still lodged in its gullies in late summer',
+      },
+      {
+        url: '/images/gran-sasso/campo-imperatore-plateau-road-to-corno-grande.jpg',
+        caption: 'The plateau road running dead straight across Campo Imperatore towards the Gran Sasso wall — the emptiness that earned it the “Little Tibet” nickname',
+      },
+      {
+        url: '/images/gran-sasso/funivia-gran-sasso-cabin-on-pylon.jpg',
+        caption: 'A funivia cabin on its lattice pylon during the 1,000m ascent from Fonte Cerreto, the wooded valley dropping away beneath',
+      },
+      {
+        url: '/images/gran-sasso/funivia-gran-sasso-top-station-bullwheel-hall.jpg',
+        caption: 'Inside the cable car machine hall: the haul bullwheel and cable gear framed by the station’s window over the valley',
+      },
+      {
+        url: '/images/gran-sasso/campo-imperatore-astronomical-observatory-domes.jpg',
+        caption: 'The domes of the Campo Imperatore astronomical observatory beside the top station, with walkers heading off across the plateau',
+      },
+      {
+        url: '/images/gran-sasso/gran-sasso-limestone-walls-above-grassland.jpg',
+        caption: 'Grey limestone walls and scree cirques of the massif towering over the smooth grassland of the high plateau',
+      },
+    ],
     waypoints: [
       {
         name: 'Funivia del Gran Sasso (Arrivo a monte)',
