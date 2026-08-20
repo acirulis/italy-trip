@@ -423,6 +423,70 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     ],
   },
   {
+    id: 'ferrata-bertona-montebello',
+    title: 'Ferrata Bertona — Montebello di Bertona',
+    subtitle: 'Abruzzo’s newest cabled route: a 250m limestone tower with the Adriatic on the horizon',
+    category: 'ferrata',
+    lat: 42.4010809,
+    lng: 13.8483678,
+    distanceKm: 358.5,
+    drivingTimeMin: 260,
+    curatedDrivingTimeMin: 260,
+    hikingTimeMin: 90,
+    trailDifficulty: 'Challenging',
+    elevationGainM: 150,
+    bestTimeToVisit: 'April to early June and September to November. The tower tops out at only 1,200 m and faces the coast, so it bakes at midday in July and August — go early, or go in the shoulder seasons when the beech woods below are turning',
+    description:
+      'The brand-new one, and the shortest serious thing in this collection. Inaugurated on 13 September 2025 on the eastern flank of Monte Bertona, above the little Pescara-province village of Montebello di Bertona, this is the first via ferrata ever rigged on the Adriatic side of the Gran Sasso massif — a compact, modern line up an unnamed limestone tower inside the Gran Sasso e Monti della Laga National Park. The numbers are modest on paper: roughly 250 m of development, a little over 100 m of vertical on the cables, 150 m of ascent for the whole outing, and about an hour and a half door to door from the parking (five minutes of approach through the wood, an hour on the iron, fifteen minutes of easy path back down). What it lacks in scale it makes up for in position and in generosity of ironwork. It was designed and built in a single month by alpine guide Gino Perini, funded through the PNRR by an unusual coalition of the comuni of Montebello di Bertona, Farindola and Arsita, the national park, and the Cogecstre cooperative that runs the nearby Lake Penne reserve — the whole thing part of a project called “I colori delle rocce”. Perini’s line is deliberately modern and well-furnished: staples and rungs almost everywhere, a short three-metre two-cable bridge, one genuinely vertical pull right off the start that asks for arm strength, an airy scramble over a rock “dente”, and a scenic cengia traverse where the ground drops away and the whole Pescara hill country unrolls east towards the sea. Around 200 people turned up to climb it on opening day, from Bergamo and Verona and as far as Malta — for a route this small, in a region that had only five historic Gran Sasso ferratas before it, that says something.',
+    highlights: [
+      'The first via ferrata on the Adriatic side of the Gran Sasso, opened September 2025 — genuinely new ground rather than a classic everyone has already done',
+      'A short two-cable bridge and an exposed traverse over the rock “dente”, the two crux moments on an otherwise well-furnished line',
+      'The scenic cengia near the top, looking east over the Pescara foothills towards the Adriatic on a clear morning',
+      'Abundant staples and rungs make it a realistic first or second ferrata — technical difficulty rates about 2 out of 5, with exposure the same',
+      'Inside the Gran Sasso e Monti della Laga National Park, a short drive from the Lake Penne nature reserve and WWF Oasis',
+      'Beech woods on the approach and descent, which makes this one of the better autumn days on the list',
+    ],
+    practicalTips: [
+      'Full via ferrata kit is non-negotiable: helmet, harness, and an energy-absorbing lanyard set. “Short and well-equipped” is not the same as “safe without gear”, and the first pitch off the ground is the steepest thing on the route.',
+      'Access is from Montebello di Bertona on the road towards Villa Celiera — marked as a waypoint below. It turns from asphalt to unpaved forest track; after roughly 5 km you reach an information board and the ferrata sign, with parking there and a five-minute walk up through the wood to the start.',
+      'This is a very long drive for ninety minutes of activity: about 4 hours 20 minutes each way from base. It only makes sense bolted onto a wider Abruzzo trip — pair it with Corno Grande and Campo Imperatore and sleep over rather than driving out and back in a day.',
+      'The tower is low and sun-exposed, and the limestone gets slick when wet. Skip it in rain and give it a day to dry out afterwards.',
+      'Being new, the route is popular and the crux sections are single-file. Arrive early on weekends; a queue on a vertical rung ladder is tiring and cold.',
+      'No water and no refuge anywhere on the route or at the parking — bring everything with you from the village.',
+      'The final unpaved stretch is fine for a normal car in dry conditions but is a forest track, not a road; take it slowly and turn back rather than commit if it has been badly washed out.',
+    ],
+    photoUrl: '/images/ferrata-bertona/ferrata-bertona-summit-pinnacle-over-adriatic-foothills.jpg',
+    googleMapsUrl:
+      'https://www.google.com/maps/place/Ferrata+Bertona/@42.4010809,13.8483678,15z/data=!4m6!3m5!1s0x1331cb0016ace049:0x7720bf80c6a6d4f4!8m2!3d42.4010809!4d13.8483678!16s%2Fg%2F11x_mr3rb8',
+    waypoints: [
+      {
+        name: 'Montebello di Bertona',
+        lat: 42.4179444,
+        lng: 13.8719008,
+        icon: '🏘️',
+        note: 'The village where the access road starts — head out towards Villa Celiera, then roughly 5 km of asphalt turning to forest track to the ferrata signboard and parking',
+      },
+    ],
+    gallery: [
+      {
+        url: '/images/ferrata-bertona/ferrata-bertona-summit-pinnacle-over-adriatic-foothills.jpg',
+        caption: 'The cabled pinnacle at the top of the route, with the Pescara hill country and the haze of the Adriatic behind it',
+      },
+      {
+        url: '/images/ferrata-bertona/montebello-di-bertona-limestone-tower.jpg',
+        caption: 'The limestone tower above Montebello di Bertona seen from below, wooded on every side',
+      },
+      {
+        url: '/images/ferrata-bertona/ferrata-bertona-metal-rungs-and-cable-on-vertical-rock.jpg',
+        caption: 'New staples and cable running straight up the pale rock — the generous ironwork that makes the line approachable',
+      },
+      {
+        url: '/images/ferrata-bertona/ferrata-bertona-climber-clipped-to-cable.jpg',
+        caption: 'A climber clipped in on the upper section, beech woods dropping away below',
+      },
+    ],
+  },
+  {
     id: 'sarteano-castle-and-borgo',
     title: 'Sarteano Castle & Etruscan Tomb of the Infernal Chariot',
     subtitle: '15th-century fortress, moat & ancient mystery right beside our base',
