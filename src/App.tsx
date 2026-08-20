@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { BaseLocation, RouteCategory, RouteItem } from './types';
 import { INITIAL_BASE_LOCATION, DEFAULT_ROUTES } from './data/defaultRoutes';
 import { Header } from './components/Header';
@@ -12,6 +12,7 @@ import { InteractiveMap } from './components/InteractiveMap';
 import { RouteCard } from './components/RouteCard';
 import { RouteDetailModal } from './components/RouteDetailModal';
 import { fetchDrivingRouteCoordinates, estimateDrivingDistanceAndMinutes } from './utils/navigation';
+import { buildRouteHash, readRouteUrlState } from './utils/urlState';
 import { 
   Search, 
   SlidersHorizontal, 
@@ -81,8 +82,15 @@ export default function App() {
     return DEFAULT_ROUTES;
   });
 
-  // 2. Selection & Filter State
-  const [selectedRouteId, setSelectedRouteId] = useState<string | null>('sentierelsa-trail');
+  // 2. Selection & Filter State — the initial selection and open guide come from
+  // the URL (`#/route/<id>[/guide]`) so every route is directly linkable.
+  const [selectedRouteId, setSelectedRouteId] = useState<string | null>(() => {
+    const fromUrl = readRouteUrlState();
+    if (fromUrl.routeId && DEFAULT_ROUTES.some((r) => r.id === fromUrl.routeId)) {
+      return fromUrl.routeId;
+    }
+    return 'sentierelsa-trail';
+  });
   const [activePolyline, setActivePolyline] = useState<[number, number][]>([]);
   const [activeDistanceKm, setActiveDistanceKm] = useState<number | undefined>(undefined);
   const [activeDurationMin, setActiveDurationMin] = useState<number | undefined>(undefined);
@@ -91,8 +99,14 @@ export default function App() {
   const [primaryPicksOnly, setPrimaryPicksOnly] = useState(false);
   const [sortBy, setSortBy] = useState<'distance' | 'time' | 'alphabetical'>('distance');
 
-  // 3. Modal State
-  const [detailModalRoute, setDetailModalRoute] = useState<RouteItem | null>(null);
+  // 3. Modal State — stored as an id so it can round-trip through the URL and
+  // always render the current (distance-recomputed) copy of the route.
+  const [detailModalRouteId, setDetailModalRouteId] = useState<string | null>(() => {
+    const fromUrl = readRouteUrlState();
+    return fromUrl.guideOpen && fromUrl.routeId && DEFAULT_ROUTES.some((r) => r.id === fromUrl.routeId)
+      ? fromUrl.routeId
+      : null;
+  });
 
   // Save changes to local storage
   useEffect(() => {
@@ -167,6 +181,66 @@ export default function App() {
     }
   }, []);
 
+  const detailModalRoute = useMemo(
+    () => routes.find((r) => r.id === detailModalRouteId) ?? null,
+    [routes, detailModalRouteId]
+  );
+
+  // Keep the address bar in step with the selection so any state is linkable.
+  // Opening a guide pushes a history entry (so Back closes it); plain map
+  // selections replace it, otherwise every pin click would pile up history.
+  const guidePushedRef = useRef(false);
+  useEffect(() => {
+    const hashRouteId = detailModalRouteId ?? selectedRouteId;
+    const desiredHash = buildRouteHash(hashRouteId, Boolean(detailModalRouteId));
+    // Drop any legacy ?route=/&guide= params while normalising to the hash form.
+    const params = new URLSearchParams(window.location.search);
+    params.delete('route');
+    params.delete('guide');
+    const query = params.toString();
+    const currentUrl = `${window.location.pathname}${query ? `?${query}` : ''}`;
+
+    if (window.location.hash === desiredHash) return;
+
+    if (detailModalRouteId && !guidePushedRef.current) {
+      guidePushedRef.current = true;
+      window.history.pushState(null, '', `${currentUrl}${desiredHash}`);
+    } else {
+      if (!detailModalRouteId) guidePushedRef.current = false;
+      window.history.replaceState(null, '', `${currentUrl}${desiredHash}`);
+    }
+  }, [selectedRouteId, detailModalRouteId]);
+
+  // Back/forward, and links pasted into the address bar of an open tab.
+  useEffect(() => {
+    const applyUrlState = () => {
+      const { routeId, guideOpen } = readRouteUrlState();
+      const known = routeId && routes.some((r) => r.id === routeId) ? routeId : null;
+      if (known && known !== selectedRouteId) {
+        handleSelectRoute(known);
+      }
+      guidePushedRef.current = false;
+      setDetailModalRouteId(known && guideOpen ? known : null);
+    };
+
+    window.addEventListener('hashchange', applyUrlState);
+    window.addEventListener('popstate', applyUrlState);
+    return () => {
+      window.removeEventListener('hashchange', applyUrlState);
+      window.removeEventListener('popstate', applyUrlState);
+    };
+  }, [routes, selectedRouteId, handleSelectRoute]);
+
+  const closeDetailModal = useCallback(() => {
+    if (guidePushedRef.current) {
+      // Unwind the entry we pushed so the URL returns to the plain selection.
+      guidePushedRef.current = false;
+      window.history.back();
+      return;
+    }
+    setDetailModalRouteId(null);
+  }, []);
+
   // Filtered & Sorted Routes
   const filteredRoutes = useMemo(() => {
     return routes
@@ -238,7 +312,7 @@ export default function App() {
                 const el = document.getElementById(`route-card-${id}`);
                 if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
               }}
-              onOpenDetails={(r) => setDetailModalRoute(r)}
+              onOpenDetails={(r) => setDetailModalRouteId(r.id)}
               activePolylineCoordinates={activePolyline}
               activeDistanceKm={activeDistanceKm}
               activeDurationMin={activeDurationMin}
@@ -417,7 +491,7 @@ export default function App() {
                   baseLng={baseLocation.lng}
                   isSelected={selectedRouteId === route.id}
                   onSelect={(id) => handleSelectRoute(id)}
-                  onOpenDetails={(r) => setDetailModalRoute(r)}
+                  onOpenDetails={(r) => setDetailModalRouteId(r.id)}
                 />
               ))}
             </div>
@@ -449,7 +523,7 @@ export default function App() {
         <RouteDetailModal
           route={detailModalRoute}
           baseLocation={baseLocation}
-          onClose={() => setDetailModalRoute(null)}
+          onClose={closeDetailModal}
           onSelectOnMap={(id) => handleSelectRoute(id)}
         />
       )}

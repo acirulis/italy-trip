@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteItem, BaseLocation } from '../types';
 import { getWazeUrl, getGoogleMapsDirUrl, exportToGpx, formatDriveTime } from '../utils/navigation';
+import { getRoutePermalink } from '../utils/urlState';
 import { ImageGallery } from './ImageGallery';
 import {
   X,
@@ -14,6 +15,7 @@ import {
   Share2,
   CheckCircle2,
   Images,
+  Link2,
 } from 'lucide-react';
 
 interface RouteDetailModalProps {
@@ -50,6 +52,8 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
   onClose,
   onSelectOnMap,
 }) => {
+  const [linkCopied, setLinkCopied] = React.useState(false);
+
   if (!route) return null;
 
   const wazeUrl = route.wazeUrl || getWazeUrl(route.lat, route.lng);
@@ -72,10 +76,26 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
     URL.revokeObjectURL(url);
   };
 
+  // Deep link back into this guide: #/route/<id>/guide
+  const permalink = getRoutePermalink(route.id, true);
+
   const handleCopyShare = () => {
-    const summary = `${route.title} (Italy Trip)\nDistance: ${route.distanceKm} km from Base (~${formatDriveTime(route.drivingTimeMin)} drive)\nCoordinates: ${route.lat}, ${route.lng}\nWaze Nav: ${wazeUrl}\nGoogle Maps: ${gmapsUrl}`;
+    const summary = `${route.title} (Italy Trip)\nGuide: ${permalink}\nDistance: ${route.distanceKm} km from Base (~${formatDriveTime(route.drivingTimeMin)} drive)\nCoordinates: ${route.lat}, ${route.lng}\nWaze Nav: ${wazeUrl}\nGoogle Maps: ${gmapsUrl}`;
     navigator.clipboard.writeText(summary);
     alert('Route summary and navigation links copied to clipboard!');
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(permalink).then(
+      () => {
+        setLinkCopied(true);
+        window.setTimeout(() => setLinkCopied(false), 2000);
+      },
+      () => {
+        // Clipboard blocked (insecure context / denied) — show the link to copy by hand.
+        window.prompt('Copy this route link:', permalink);
+      }
+    );
   };
 
   return (
@@ -108,13 +128,29 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
             </p>
           </div>
 
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-full bg-[#EFECE6] hover:bg-[#E6E1D6] text-[#3D3A30] flex items-center justify-center transition cursor-pointer shrink-0"
-            aria-label="Close dialog"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={handleCopyLink}
+              title={permalink}
+              aria-label="Copy a direct link to this route guide"
+              className={`flex items-center gap-1.5 h-8 px-3 rounded-full text-[11px] font-semibold transition cursor-pointer ${
+                linkCopied
+                  ? 'bg-[#607B57] text-white'
+                  : 'bg-[#EFECE6] hover:bg-[#E6E1D6] text-[#3D3A30]'
+              }`}
+            >
+              {linkCopied ? <CheckCircle2 className="w-3.5 h-3.5" /> : <Link2 className="w-3.5 h-3.5" />}
+              <span className="hidden sm:inline">{linkCopied ? 'Link copied' : 'Copy link'}</span>
+            </button>
+
+            <button
+              onClick={onClose}
+              className="w-8 h-8 rounded-full bg-[#EFECE6] hover:bg-[#E6E1D6] text-[#3D3A30] flex items-center justify-center transition cursor-pointer shrink-0"
+              aria-label="Close dialog"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Modal Body */}
