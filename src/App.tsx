@@ -86,6 +86,7 @@ export default function App() {
   const [activeDurationMin, setActiveDurationMin] = useState<number | undefined>(undefined);
   const [selectedCategory, setSelectedCategory] = useState<RouteCategory | 'all'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [primaryPicksOnly, setPrimaryPicksOnly] = useState(false);
   const [sortBy, setSortBy] = useState<'distance' | 'time' | 'alphabetical'>('distance');
 
   // 3. Modal State
@@ -169,6 +170,7 @@ export default function App() {
     return routes
       .filter((route) => {
         const matchesCategory = selectedCategory === 'all' || route.category === selectedCategory;
+        const matchesPrimary = !primaryPicksOnly || Boolean(route.isPrimaryPick);
         const q = searchQuery.toLowerCase().trim();
         const matchesSearch =
           !q ||
@@ -176,7 +178,7 @@ export default function App() {
           route.subtitle.toLowerCase().includes(q) ||
           route.description.toLowerCase().includes(q) ||
           route.highlights.some((h) => h.toLowerCase().includes(q));
-        return matchesCategory && matchesSearch;
+        return matchesCategory && matchesPrimary && matchesSearch;
       })
       .sort((a, b) => {
         if (sortBy === 'distance') return a.distanceKm - b.distanceKm;
@@ -184,7 +186,12 @@ export default function App() {
         if (sortBy === 'alphabetical') return a.title.localeCompare(b.title);
         return 0;
       });
-  }, [routes, selectedCategory, searchQuery, sortBy]);
+  }, [routes, selectedCategory, primaryPicksOnly, searchQuery, sortBy]);
+
+  const primaryPickCount = useMemo(
+    () => routes.filter((r) => Boolean(r.isPrimaryPick)).length,
+    [routes]
+  );
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] flex flex-col text-[#333028] selection:bg-[#FBF0E8] selection:text-[#B4643B]">
@@ -355,6 +362,25 @@ export default function App() {
                   {routes.filter(r => r.category === 'sightseeing').length}
                 </span>
               </button>
+
+              {/* Primary Picks toggle - stacks on top of the category filter */}
+              <span className="hidden sm:inline w-px h-5 bg-[#E6E1D6] mx-1" aria-hidden="true" />
+
+              <button
+                onClick={() => setPrimaryPicksOnly((v) => !v)}
+                aria-pressed={primaryPicksOnly}
+                title="Show only the hand-picked highlights of the trip"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
+                  primaryPicksOnly
+                    ? 'bg-[#B4643B] text-white shadow-xs'
+                    : 'bg-white text-[#9A4C25] border border-[#EBD9CB] hover:bg-[#FBF0E8]'
+                }`}
+              >
+                <span>★ Primary Picks</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-md ${primaryPicksOnly ? 'bg-white/20 text-white' : 'bg-[#F4D9C7] text-[#7A3614]'}`}>
+                  {primaryPickCount}
+                </span>
+              </button>
             </div>
           </div>
 
@@ -366,11 +392,12 @@ export default function App() {
               </div>
               <h3 className="font-bold text-[#333028] text-base">No routes match your search</h3>
               <p className="text-xs text-[#6B665A] max-w-sm mx-auto">
-                Try searching for a different keyword or switch the category filter.
+                Try searching for a different keyword, switch the category filter, or turn off Primary Picks.
               </p>
               <button
                 onClick={() => {
                   setSelectedCategory('all');
+                  setPrimaryPicksOnly(false);
                   setSearchQuery('');
                 }}
                 className="text-xs font-semibold text-[#B4643B] hover:text-[#9A4C25] underline cursor-pointer"
