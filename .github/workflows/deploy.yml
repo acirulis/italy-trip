@@ -22,7 +22,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Matches local dev (Node 22 / npm 11), which is what writes
+          # package-lock.json — keeps `npm ci` resolution identical here.
+          node-version: 22
           cache: npm
 
       - run: npm ci
