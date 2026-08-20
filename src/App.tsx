@@ -64,6 +64,8 @@ export default function App() {
                 highlights: defaultItem.highlights,
                 practicalTips: defaultItem.practicalTips,
                 bestTimeToVisit: defaultItem.bestTimeToVisit,
+                curatedDrivingTimeMin: defaultItem.curatedDrivingTimeMin,
+                waypoints: defaultItem.waypoints,
                 isPrimaryPick: defaultItem.isPrimaryPick !== undefined ? defaultItem.isPrimaryPick : savedItem.isPrimaryPick,
               };
             }
@@ -114,7 +116,7 @@ export default function App() {
         return {
           ...r,
           distanceKm,
-          drivingTimeMin: timeMin,
+          drivingTimeMin: r.curatedDrivingTimeMin ?? timeMin,
         };
       })
     );
@@ -150,7 +152,7 @@ export default function App() {
         );
         setActivePolyline(routeData.coordinates);
         setActiveDistanceKm(routeData.distanceKm);
-        setActiveDurationMin(routeData.durationMin);
+        setActiveDurationMin(targetRoute.curatedDrivingTimeMin ?? routeData.durationMin);
       } catch {
         // keep fallback
       }
