@@ -140,3 +140,13 @@ export function exportToGpx(
   </rte>
 </gpx>`;
 }
+
+// Render a driving duration as hours + minutes ("50 min", "1h 20min", "2h")
+export function formatDriveTime(totalMinutes: number): string {
+  const minutes = Math.max(0, Math.round(totalMinutes));
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+  if (hours === 0) return `${rest} min`;
+  if (rest === 0) return `${hours}h`;
+  return `${hours}h ${rest}min`;
+}

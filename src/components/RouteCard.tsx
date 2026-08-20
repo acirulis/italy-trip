@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RouteItem } from '../types';
-import { getWazeUrl, getGoogleMapsDirUrl } from '../utils/navigation';
+import { getWazeUrl, getGoogleMapsDirUrl, formatDriveTime } from '../utils/navigation';
 import { withBasePath } from '../utils/assets';
 import { 
   Navigation, 
@@ -298,7 +298,7 @@ export const RouteCard: React.FC<RouteCardProps> = ({
               <div>
                 <div className="text-[10px] text-[#9E988A] font-bold uppercase leading-none">Drive Time</div>
                 <div className="text-xs font-extrabold text-[#333028] font-mono mt-0.5">
-                  ~{route.drivingTimeMin} min
+                  ~{formatDriveTime(route.drivingTimeMin)}
                 </div>
               </div>
             </div>
@@ -359,7 +359,7 @@ export const RouteCard: React.FC<RouteCardProps> = ({
         <div className="pt-2 border-t border-[#EFECE4] space-y-1.5">
           <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#9E988A] px-0.5">
             <span>Navigation (Secondary)</span>
-            <span>~{route.drivingTimeMin} min drive</span>
+            <span>~{formatDriveTime(route.drivingTimeMin)} drive</span>
           </div>
 
           <div className="grid grid-cols-2 gap-2">

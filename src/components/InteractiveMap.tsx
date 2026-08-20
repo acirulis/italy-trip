@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { BaseLocation, MapTileLayerType, RouteItem } from '../types';
-import { getWazeUrl, getGoogleMapsDirUrl } from '../utils/navigation';
+import { getWazeUrl, getGoogleMapsDirUrl, formatDriveTime } from '../utils/navigation';
 import { Layers, Navigation, Home, ZoomIn, ZoomOut, Compass, MapPin, Sparkles } from 'lucide-react';
 
 interface InteractiveMapProps {
@@ -225,7 +225,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
             }">
               ${route.category}
             </span>
-            <span class="text-xs font-bold text-[#6B665A] font-mono">${route.distanceKm} km &bull; ~${route.drivingTimeMin} min</span>
+            <span class="text-xs font-bold text-[#6B665A] font-mono">${route.distanceKm} km &bull; ~${formatDriveTime(route.drivingTimeMin)}</span>
           </div>
 
           <!-- Clickable Title opening Guide & Gallery -->
@@ -350,7 +350,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
             <div className="text-[11px] font-semibold text-[#8A8477] uppercase tracking-wider">Driving from Base</div>
             <div className="flex items-baseline gap-2">
               <span className="text-base font-extrabold text-[#333028] font-mono">{activeDistanceKm} km</span>
-              <span className="text-xs text-[#6B665A] font-medium">~{activeDurationMin} mins driving</span>
+              <span className="text-xs text-[#6B665A] font-medium">~{formatDriveTime(activeDurationMin)} driving</span>
             </div>
           </div>
         </div>

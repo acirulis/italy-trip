@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteItem, BaseLocation } from '../types';
-import { getWazeUrl, getGoogleMapsDirUrl, getAppleMapsUrl, exportToGpx } from '../utils/navigation';
+import { getWazeUrl, getGoogleMapsDirUrl, getAppleMapsUrl, exportToGpx, formatDriveTime } from '../utils/navigation';
 import { ImageGallery } from './ImageGallery';
 import {
   X,
@@ -74,7 +74,7 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
   };
 
   const handleCopyShare = () => {
-    const summary = `${route.title} (Italy Trip)\nDistance: ${route.distanceKm} km from Base (~${route.drivingTimeMin} min drive)\nCoordinates: ${route.lat}, ${route.lng}\nWaze Nav: ${wazeUrl}\nGoogle Maps: ${gmapsUrl}`;
+    const summary = `${route.title} (Italy Trip)\nDistance: ${route.distanceKm} km from Base (~${formatDriveTime(route.drivingTimeMin)} drive)\nCoordinates: ${route.lat}, ${route.lng}\nWaze Nav: ${wazeUrl}\nGoogle Maps: ${gmapsUrl}`;
     navigator.clipboard.writeText(summary);
     alert('Route summary and navigation links copied to clipboard!');
   };
@@ -149,7 +149,7 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
             <div>
               <div className="text-[10px] font-bold text-[#9E988A] uppercase">Driving Time</div>
               <div className="text-sm font-extrabold font-mono text-[#333028] mt-0.5">
-                ~{route.drivingTimeMin} mins
+                ~{formatDriveTime(route.drivingTimeMin)}
               </div>
             </div>
             <div>
