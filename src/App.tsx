@@ -57,6 +57,14 @@ export default function App() {
                 // Ensure latest default galleries, photos, and primary pick designations are used
                 photoUrl: defaultItem.photoUrl,
                 gallery: defaultItem.gallery,
+                // Curated prose is authoritative in code — there is no UI to edit it, so a stale
+                // localStorage copy must never shadow updated guide content.
+                title: defaultItem.title,
+                subtitle: defaultItem.subtitle,
+                description: defaultItem.description,
+                highlights: defaultItem.highlights,
+                practicalTips: defaultItem.practicalTips,
+                bestTimeToVisit: defaultItem.bestTimeToVisit,
                 isPrimaryPick: defaultItem.isPrimaryPick !== undefined ? defaultItem.isPrimaryPick : savedItem.isPrimaryPick,
               };
             }

@@ -23,6 +23,27 @@ interface RouteDetailModalProps {
   onSelectOnMap: (id: string) => void;
 }
 
+// Turns bare http(s) URLs inside curated prose into clickable links.
+const URL_SPLIT_PATTERN = /(https?:\/\/[^\s)]*[^\s).,;:])/g;
+const URL_TEST_PATTERN = /^https?:\/\//;
+
+const renderTextWithLinks = (text: string) =>
+  text.split(URL_SPLIT_PATTERN).map((part, idx) =>
+    URL_TEST_PATTERN.test(part) ? (
+      <a
+        key={idx}
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[#B4643B] underline underline-offset-2 hover:text-[#8F4A28] break-words"
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+
 export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
   route,
   baseLocation,
@@ -190,7 +211,7 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
               About This Route & Destination
             </h4>
             <p className="text-[#4A453B] text-sm leading-relaxed">
-              {route.description}
+              {renderTextWithLinks(route.description)}
             </p>
           </div>
 
