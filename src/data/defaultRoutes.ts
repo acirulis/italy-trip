@@ -609,7 +609,7 @@ export const DEFAULT_ROUTES: RouteItem[] = [
         icon: '🚠',
         note: 'Cable car top station on Campo Imperatore at roughly 2,130m — the arrival point from Fonte Cerreto and the start of the Via Normale to Corno Grande, with the hotel, observatory and the last bar before the climb.',
         googleMapsUrl:
-          'https://www.google.com/maps/place/Funivia+del+Gran+Sasso+(Arrivo+a+monte)/@42.4427489,13.5576741,16z/data=!4m7!3m6!1s0x1331d560501d3cbb:0x928f0fdcc0d6fb02!8m2!3d42.4427489!4d13.5576741!16s%2Fg%2F11hdxcqbrt',
+          'https://www.google.com/maps/place/Funivia+del+Gran+Sasso+(Arrivo+a+monte)/@42.4427528,13.5550992,17z/data=!3m1!4b1!4m6!3m5!1s0x1331d560501d3cbb:0x928f0fdcc0d6fb02!8m2!3d42.4427489!4d13.5576741!16s%2Fg%2F11hdxcqbrt!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D',
       },
     ],
   },
