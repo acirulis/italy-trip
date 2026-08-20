@@ -6,12 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A single-page React + Vite app ("Italy Trip Hub") that acts as a route companion for a Tuscany trip: one *living base* location plus a catalog of day-trip routes (thermal springs, hikes, hill towns, wine), each with an interactive Leaflet map, real driving geometry, and deep links to Waze / Google Maps / Apple Maps.
 
-Originated as a Google AI Studio app (see `README.md`, `metadata.json`). Despite `@google/genai` and `express` being in `package.json`, **there is no server and no Gemini call anywhere in `src/`** — it is a purely client-side static app. Don't assume a backend exists.
+**There is no server and no AI/LLM call anywhere in `src/`** — it is a purely client-side static app with no API keys. Don't assume a backend exists.
 
 ## Commands
 
 ```bash
-npm install          # or `bun install` — bun.lock is the committed lockfile, but bun may not be on PATH
+npm install          # package-lock.json is the committed lockfile
 npm run dev          # vite on port 3000, host 0.0.0.0
 npm run build
 npm run preview
@@ -20,7 +20,7 @@ npm run lint         # tsc --noEmit — this is the only check; there is no test
 
 There are no tests. `npm run lint` (type-check) is the verification step for any change.
 
-`DISABLE_HMR=true` disables both HMR and file watching (`vite.config.ts`); it exists for AI Studio's agent-edit environment. Leave that block alone.
+`DISABLE_HMR=true` disables both HMR and file watching (`vite.config.ts`); it exists so automated in-place edits don't trigger reload flicker. Leave that block alone.
 
 ## Architecture
 
@@ -49,3 +49,18 @@ Images are static files under `public/images/<place-slug>/<descriptive-name>.jpg
 Tailwind v4 via `@tailwindcss/vite` (no `tailwind.config.js`; `@import "tailwindcss"` in `src/index.css`). Colors are written as inline hex arbitrary values (`bg-[#FAF8F5]`, `text-[#B4643B]`) throughout the JSX; the warm Tuscan palette is also mirrored as CSS variables in `index.css`, and per-category color sets are duplicated in local helpers like `getCategoryTheme` in `RouteCard.tsx`. Match the surrounding hex-literal style rather than introducing a new theming layer. Leaflet's CSS and Google Fonts load from CDN in `index.html`.
 
 The `@` path alias resolves to the project root (not `src/`), though current code uses relative imports.
+
+## Git workflow
+
+Work is tracked in a **local-only** git repository on `main`. There is no remote — never attempt to push, and don't ask about one.
+
+**Commit each finished feature as its own commit on `main`.** This is standing authorization: when a feature is complete and `npm run lint` passes, commit it without asking. Rules:
+
+- One commit per feature — not one per file, and not one bundle at the end of a session. If a session delivers three features, that's three commits.
+- Commit only when the feature actually works; don't commit a half-built state to "checkpoint" it.
+- Stay on `main`. Don't create branches, don't rebase, don't amend or reorder earlier commits.
+- Run `npm run lint` before each commit; a failing type-check means the feature isn't finished.
+- Subject line names the user-visible feature (e.g. `Add GPX export to route detail modal`), not the files touched.
+- Leave unrelated in-progress edits out of the commit — stage the feature's files explicitly rather than `git add -A`.
+
+If the repo has no `.git` yet, initialize it on `main` first: `git init -b main`. `.gitignore` already covers `node_modules/`, `dist/`, and `.env*`.

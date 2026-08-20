@@ -1,20 +1,25 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Italy Trip Hub
 
-# Run and deploy your AI Studio app
+Interactive route companion for a Tuscany trip: one living base location plus a
+catalog of day-trip routes (thermal springs, hikes, hill towns, wine), each with
+an interactive Leaflet map, real driving geometry, and deep links to Waze,
+Google Maps and Apple Maps.
 
-This contains everything you need to run your app locally.
+Purely client-side React + Vite — no backend, no API keys required.
 
-View your app in AI Studio: https://ai.studio/apps/a6e33027-7527-466b-9c7b-0c686ae4ef10
+## Run locally
 
-## Run Locally
+**Prerequisites:** Node.js
 
-**Prerequisites:**  Node.js
+```bash
+npm install    # install dependencies
+npm run dev    # start Vite on http://localhost:3000
+```
 
+## Other commands
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm run build     # production build into dist/
+npm run preview   # serve the production build
+npm run lint      # tsc --noEmit (the only check; there is no test suite)
+```
