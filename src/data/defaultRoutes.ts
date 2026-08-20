@@ -82,7 +82,7 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     gallery: [
       {
         url: '/images/sentierelsa/sentierelsa-turquoise-river.jpg',
-        caption: 'Sentierelsa Trail: stunning turquoise mineral waters and travertine riverbed along the Parco Fluviale dell’Elsa',
+        caption: 'Sentierelsa Trail: the rope-assisted stepping stone crossing over the turquoise Elsa, with travertine ledges and a deep swimming pool on the far side',
       },
       {
         url: '/images/sentierelsa/diborrato-waterfall-cascata.jpg',

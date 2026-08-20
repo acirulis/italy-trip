@@ -44,6 +44,22 @@ State lives entirely in `src/App.tsx` — there is no store, router, or context.
 
 Images are static files under `public/images/<place-slug>/<descriptive-name>.jpg`, referenced as `/images/...`. Filenames are SEO-descriptive, not abbreviated. `gallery` entries accept either a bare URL string or `{ url, caption }`.
 
+**Always downscale images for web and phone view before committing them.** Never commit a camera- or Maps-resolution original (multi-megapixel, multi-megabyte) — the app has no `srcset` and serves one file per image to both desktop and mobile, so the committed file *is* the display file. Every image under `public/images/` must be:
+
+- **max 1200px on the long edge** (the existing house size; phones at 2x still get a sharp image at typical card/gallery widths),
+- **progressive JPEG, quality ~78-82, 4:2:0 chroma**, with all EXIF/metadata stripped,
+- **under ~350KB**; drop quality (not below ~72) before raising dimensions if a dense, detailed photo overshoots.
+
+The one-liner that produces a compliant file:
+
+```bash
+convert source.jpg -auto-orient -resize '1200x1200>' -strip \
+  -sampling-factor 4:2:0 -interlace JPEG -quality 78 \
+  public/images/<place-slug>/<descriptive-name>.jpg
+```
+
+Verify with `identify -format "%f %wx%h %b\n" public/images/*/*.jpg` — anything wider than 1200px or heavier than ~350KB should be re-encoded, not committed.
+
 ## Styling
 
 Tailwind v4 via `@tailwindcss/vite` (no `tailwind.config.js`; `@import "tailwindcss"` in `src/index.css`). Colors are written as inline hex arbitrary values (`bg-[#FAF8F5]`, `text-[#B4643B]`) throughout the JSX; the warm Tuscan palette is also mirrored as CSS variables in `index.css`, and per-category color sets are duplicated in local helpers like `getCategoryTheme` in `RouteCard.tsx`. Match the surrounding hex-literal style rather than introducing a new theming layer. Leaflet's CSS and Google Fonts load from CDN in `index.html`.
