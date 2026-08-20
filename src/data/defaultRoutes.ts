@@ -427,6 +427,7 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     title: 'Ferrata Bertona — Montebello di Bertona',
     subtitle: 'Abruzzo’s newest cabled route: a 250m limestone tower with the Adriatic on the horizon',
     category: 'ferrata',
+    isPrimaryPick: true,
     lat: 42.4010809,
     lng: 13.8483678,
     distanceKm: 358.5,
