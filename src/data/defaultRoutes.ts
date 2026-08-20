@@ -299,6 +299,7 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     title: 'Monte Amiata Volcano Summit Trek (1,738m)',
     subtitle: 'Southern Tuscany’s highest peak & ancient beech forest trails',
     category: 'trekking',
+    isPrimaryPick: true,
     lat: 42.88769,
     lng: 11.6239051,
     distanceKm: 32.4,
