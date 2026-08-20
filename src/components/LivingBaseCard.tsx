@@ -26,7 +26,6 @@ export const LivingBaseCard: React.FC<LivingBaseCardProps> = ({
 
   const wazeHomeUrl = getWazeUrl(baseLocation.lat, baseLocation.lng);
   const gmapsHomeUrl = `https://www.google.com/maps/search/?api=1&query=${baseLocation.lat},${baseLocation.lng}`;
-  const appleHomeUrl = `https://maps.apple.com/?daddr=${baseLocation.lat},${baseLocation.lng}&dirflg=d`;
 
   const handleCopyCoords = () => {
     navigator.clipboard.writeText(`${baseLocation.lat}, ${baseLocation.lng}`);
@@ -194,17 +193,6 @@ export const LivingBaseCard: React.FC<LivingBaseCardProps> = ({
             >
               <MapPin className="w-3.5 h-3.5" />
               <span>Google Maps</span>
-            </a>
-
-            {/* Apple Maps */}
-            <a
-              href={appleHomeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-1 bg-[#F4F1EA] hover:bg-[#EAE5DA] text-[#4A453B] text-xs font-medium px-2.5 py-2 rounded-xl transition border border-[#E6E1D6]"
-              title="Open base in Apple Maps"
-            >
-              <span>Apple Maps</span>
             </a>
 
             {/* Locate on Map */}

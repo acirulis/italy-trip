@@ -34,7 +34,7 @@ State lives entirely in `src/App.tsx` — there is no store, router, or context.
 - `InteractiveMap.tsx` — imperative Leaflet, mounted via refs (`mapInstanceRef`, layer-group refs), not react-leaflet. Separate effects own init, tile-layer swap, markers, and the active polyline; keep that separation when editing. Tile layers are defined in the local `TILE_CONFIG` map, keyed by `MapTileLayerType`.
 - `RouteCard.tsx` / `RouteDetailModal.tsx` / `ImageGallery.tsx` / `LivingBaseCard.tsx` — display only; new routes are authored in `defaultRoutes.ts`, not through the UI.
 
-**Navigation links** are all generated in `src/utils/navigation.ts` (Waze/Google/Apple deep links, GPX export). Never hand-build a maps URL in a component. `getGoogleMapsDirUrl` prefers a route's curated `googleMapsUrl` when it points at google.com/maps.
+**Navigation links** are all generated in `src/utils/navigation.ts` (Waze/Google deep links, GPX export). Never hand-build a maps URL in a component. `getGoogleMapsDirUrl` prefers a route's curated `googleMapsUrl` when it points at google.com/maps.
 
 `src/types.ts` is the single source of truth for `RouteItem`, `BaseLocation`, `RouteCategory`, `MapTileLayerType`.
 

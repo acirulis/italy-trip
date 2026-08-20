@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteItem, BaseLocation } from '../types';
-import { getWazeUrl, getGoogleMapsDirUrl, getAppleMapsUrl, exportToGpx, formatDriveTime } from '../utils/navigation';
+import { getWazeUrl, getGoogleMapsDirUrl, exportToGpx, formatDriveTime } from '../utils/navigation';
 import { ImageGallery } from './ImageGallery';
 import {
   X,
@@ -54,7 +54,6 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
 
   const wazeUrl = route.wazeUrl || getWazeUrl(route.lat, route.lng);
   const gmapsUrl = getGoogleMapsDirUrl(baseLocation.lat, baseLocation.lng, route.lat, route.lng, route.googleMapsUrl);
-  const appleMapsUrl = route.appleMapsUrl || getAppleMapsUrl(baseLocation.lat, baseLocation.lng, route.lat, route.lng);
 
   const handleDownloadGpx = () => {
     const gpxData = exportToGpx(
@@ -171,7 +170,7 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
             <h4 className="text-xs font-bold text-[#9E988A] uppercase tracking-wider">
               Launch Live Turn-by-Turn Navigation
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <a
                 href={wazeUrl}
                 target="_blank"
@@ -192,15 +191,6 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
               >
                 <MapPin className="w-4 h-4" />
                 <span>Google Maps Route</span>
-              </a>
-
-              <a
-                href={appleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#3D3A30] hover:bg-[#232722] text-white text-xs font-medium py-2.5 px-3 rounded-xl shadow-xs transition"
-              >
-                <span>Apple Maps</span>
               </a>
             </div>
           </div>

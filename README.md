@@ -2,8 +2,8 @@
 
 Interactive route companion for a Tuscany trip: one living base location plus a
 catalog of day-trip routes (thermal springs, hikes, hill towns, wine), each with
-an interactive Leaflet map, real driving geometry, and deep links to Waze,
-Google Maps and Apple Maps.
+an interactive Leaflet map, real driving geometry, and deep links to Waze and
+Google Maps.
 
 Purely client-side React + Vite — no backend, no API keys required.
 

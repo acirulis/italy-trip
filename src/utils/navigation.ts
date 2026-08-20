@@ -21,16 +21,6 @@ export function getGoogleMapsDirUrl(
   return `https://www.google.com/maps/dir/?api=1&origin=${originLat.toFixed(6)},${originLng.toFixed(6)}&destination=${destLat.toFixed(6)},${destLng.toFixed(6)}&travelmode=driving`;
 }
 
-// Generate Apple Maps link
-export function getAppleMapsUrl(
-  originLat: number,
-  originLng: number,
-  destLat: number,
-  destLng: number
-): string {
-  return `https://maps.apple.com/?saddr=${originLat.toFixed(6)},${originLng.toFixed(6)}&daddr=${destLat.toFixed(6)},${destLng.toFixed(6)}&dirflg=d`;
-}
-
 // Calculate straight-line distance in km (Haversine formula)
 export function calculateHaversineDistanceKm(
   lat1: number,

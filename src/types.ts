@@ -45,7 +45,6 @@ export interface RouteItem {
   practicalTips: string[];
   googleMapsUrl?: string;
   wazeUrl?: string;
-  appleMapsUrl?: string;
   photoUrl?: string;
   gallery?: (string | RouteImage)[];
   isPrimaryPick?: boolean;
