@@ -176,6 +176,9 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       } else if (route.category === 'trekking') {
         categoryBg = 'bg-[#607B57]';
         categoryEmoji = '🥾';
+      } else if (route.category === 'ferrata') {
+        categoryBg = 'bg-[#6B7A85]';
+        categoryEmoji = '🧗';
       } else if (route.category === 'sightseeing') {
         categoryBg = 'bg-[#B4643B]';
         categoryEmoji = '🏰';
@@ -217,6 +220,7 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
             <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
               route.category === 'thermal' ? 'bg-[#EBF4F5] text-[#2F6166]' :
               route.category === 'trekking' ? 'bg-[#EEF3EC] text-[#3F5B37]' :
+              route.category === 'ferrata' ? 'bg-[#EDF1F4] text-[#3B4C57]' :
               route.category === 'sightseeing' ? 'bg-[#FBF0E8] text-[#9A4C25]' : 'bg-[#F2EFE9] text-[#333028]'
             }">
               ${route.category}

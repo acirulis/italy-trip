@@ -1,6 +1,7 @@
 export type RouteCategory = 
   | 'thermal' 
   | 'trekking' 
+  | 'ferrata' 
   | 'sightseeing' 
   | 'viewpoint';
 

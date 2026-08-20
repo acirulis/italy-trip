@@ -89,6 +89,14 @@ export const RouteCard: React.FC<RouteCardProps> = ({
           dot: 'bg-[#607B57]',
           label: 'Trekking & Hikes',
         };
+      case 'ferrata':
+        return {
+          bg: 'bg-[#EDF1F4]',
+          text: 'text-[#3B4C57]',
+          border: 'border-[#CFDAE1]',
+          dot: 'bg-[#6B7A85]',
+          label: 'Via Ferrata',
+        };
       case 'sightseeing':
         return {
           bg: 'bg-[#FBF0E8]',
@@ -143,6 +151,7 @@ export const RouteCard: React.FC<RouteCardProps> = ({
                 className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider backdrop-blur-md shadow-xs ${
                   route.category === 'thermal' ? 'bg-[#1E3B3E]/85 text-[#B6E1E4] border border-[#4E878C]/40' :
                   route.category === 'trekking' ? 'bg-[#22351E]/85 text-[#CBE0C7] border border-[#607B57]/40' :
+                  route.category === 'ferrata' ? 'bg-[#1E2A31]/85 text-[#C3D6DF] border border-[#6B7A85]/40' :
                   route.category === 'sightseeing' ? 'bg-[#3A2216]/85 text-[#F5C7AF] border border-[#B4643B]/40' :
                   'bg-[#232722]/85 text-[#E0DCCE] border border-[#444B3F]/40'
                 }`}

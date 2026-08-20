@@ -329,6 +329,20 @@ export default function App() {
               </button>
 
               <button
+                onClick={() => setSelectedCategory('ferrata')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
+                  selectedCategory === 'ferrata'
+                    ? 'bg-[#6B7A85] text-white shadow-xs'
+                    : 'bg-[#EDF1F4] text-[#3B4C57] hover:bg-[#DFE7EB]'
+                }`}
+              >
+                <span>🧗 Via Ferratas</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-md ${selectedCategory === 'ferrata' ? 'bg-white/20 text-white' : 'bg-[#D3DFE5] text-[#26343D]'}`}>
+                  {routes.filter(r => r.category === 'ferrata').length}
+                </span>
+              </button>
+
+              <button
                 onClick={() => setSelectedCategory('sightseeing')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
                   selectedCategory === 'sightseeing'

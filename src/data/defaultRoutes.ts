@@ -368,6 +368,60 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     ],
   },
   {
+    id: 'via-ferrata-tordini-galligani',
+    title: 'Via Ferrata Tordini-Galligani & Pizzo d’Uccello North Face',
+    subtitle: 'Historic cabled marble route to Foce Siggioli beneath the “Apuan Matterhorn”',
+    category: 'ferrata',
+    isPrimaryPick: true,
+    lat: 44.1444005,
+    lng: 10.1834521,
+    distanceKm: 249.9,
+    drivingTimeMin: 333,
+    hikingTimeMin: 330,
+    trailDifficulty: 'Challenging',
+    elevationGainM: 680,
+    bestTimeToVisit: 'Late May to early October; start at first light in summer. The face is north-facing and holds ice and verglas well into spring',
+    description:
+      'The wildest thing in this entire collection, and the one that needs the most respect. Tucked into the far northern Apuane above the hamlet of Ugliancaldo, the Tordini-Galligani hauls itself up steep white marble slabs and cabled ramps to the notch of Foce Siggioli at 1,386 m — and the reward at the top is one of the great mountain views in Italy: the sheer north face of Pizzo d’Uccello (1,781 m) rising straight out of the Valle di Vinca in a single 700-metre sweep of pale rock, the wall that earned the peak its nickname as the Matterhorn of the Apuane. The ferrata itself was rigged in 1971 and inaugurated on 25 April 1972, named for Brunello Tordini and Pierluigi Galligani, two CAI Pisa members who died in 1970. It grades out as medium — about 2 out of 5 technically — but the setting is serious: roughly 400 m of cabled development inside an 8 km round trip with 680 m of ascent, and around five and a half hours of movement all in (an hour and a half of approach, two hours on the cables, two hours of descent). From Foce Siggioli strong parties continue up the expert path to the summit of Pizzo d’Uccello; everyone else turns the day into a ring, traversing the Cresta di Capradossa and dropping back to Ugliancaldo on CAI trail 181.',
+    highlights: [
+      'The 700 m north face of Pizzo d’Uccello framed head-on from the Foce Siggioli notch — the finest rock wall in Tuscany',
+      'Around 400 m of cable, staples, and ladder rungs across bright, water-polished Apuan marble',
+      'A 1972 CAI-era line with the honest, sparse ironwork of its generation — no theme-park bridges here',
+      'Ring finish along the airy Cresta di Capradossa on CAI 181 rather than a there-and-back',
+      'Old Cantonaccio marble quarries and chestnut woods on the approach track above Ugliancaldo',
+      'Optional continuation on the expert path to the 1,781 m summit of Pizzo d’Uccello',
+    ],
+    practicalTips: [
+      'This needs real via ferrata gear: helmet, harness, and a proper energy-absorbing lanyard set. Nothing here is optional — the rock sheds loose marble plates and rockfall is the main objective danger.',
+      'Park in Ugliancaldo (Casola in Lunigiana) and walk the unpaved road towards the Cantonaccio quarries — roughly 45 minutes extra each way, but it spares the car and the approach signage is poor enough that the track is the safest line.',
+      'Descend the Cresta di Capradossa on CAI 181. CAI 192 has been left in bad shape by a landslide and fallen timber — do not use it as a shortcut.',
+      'It is a long way from base: reckon on roughly two and three quarter to three hours of driving each way via the A1 and A11, so this is a dawn departure or, better, an overnight in Lunigiana or Garfagnana.',
+      'The face is in shade for much of the day, which keeps it cool in August but also means late-lying ice and wet rock in spring and after rain — skip it on a damp day.',
+      'No water on the route and no refuge at the top; carry everything, and check Apuane weather carefully, since afternoon storms build fast on these ridges.',
+    ],
+    photoUrl: '/images/via-ferrata-tordini-galligani/pizzo-uccello-north-face-from-foce-siggioli.jpg',
+    googleMapsUrl:
+      'https://www.google.com/maps/place/Via+Ferrata+Tordini-Galligani/@44.1444005,10.1834521,15z/data=!4m6!3m5!1s0x12d513b7a02e270d:0x268abbf31808a0bf!8m2!3d44.1444005!4d10.1834521!16s%2Fg%2F11g4byjbrg',
+    gallery: [
+      {
+        url: '/images/via-ferrata-tordini-galligani/pizzo-uccello-north-face-from-foce-siggioli.jpg',
+        caption: 'The north face of Pizzo d’Uccello seen from the top of the route — a single sweep of pale marble above the Valle di Vinca',
+      },
+      {
+        url: '/images/via-ferrata-tordini-galligani/via-ferrata-tordini-galligani-cabled-marble-ridge.jpg',
+        caption: 'Steel cable running up the polished white marble crest of the ferrata, with scrub clinging to the slabs',
+      },
+      {
+        url: '/images/via-ferrata-tordini-galligani/via-ferrata-tordini-galligani-climber-on-cables.jpg',
+        caption: 'A helmeted climber clipped to the cables on one of the steeper rung sections',
+      },
+      {
+        url: '/images/via-ferrata-tordini-galligani/via-ferrata-tordini-galligani-approach-slabs.jpg',
+        caption: 'Looking up the approach slabs towards the jagged skyline of the Foce Siggioli notch',
+      },
+    ],
+  },
+  {
     id: 'sarteano-castle-and-borgo',
     title: 'Sarteano Castle & Etruscan Tomb of the Infernal Chariot',
     subtitle: '15th-century fortress, moat & ancient mystery right beside our base',
