@@ -60,6 +60,25 @@ convert source.jpg -auto-orient -resize '1200x1200>' -strip \
 
 Verify with `identify -format "%f %wx%h %b\n" public/images/*/*.jpg` — anything wider than 1200px or heavier than ~350KB should be re-encoded, not committed.
 
+### Sourcing photos for a new location
+
+Don't hand-save images one at a time. Given a Google Maps link to the place, one command pulls every public photo Maps holds for it and builds a contact sheet:
+
+```bash
+node scripts/fetch-maps-photos.mjs "<maps-place-link>" --slug <place-slug>
+```
+
+Originals land in `.maps-photos/<place-slug>/` (git-ignored — they are multi-megabyte and must never be committed) alongside `contact-sheet.jpg` and a `manifest.json` mapping each file to its source URL. Look at the sheet, then run the `convert` line above on the keepers only, naming them descriptively as you go.
+
+Requirements: `google-chrome` on PATH (override with `CHROME_BIN`), `curl`, and ImageMagick for the sheet. No npm dependency — it drives Chrome over CDP using node's built-in `WebSocket`.
+
+Things worth knowing before trusting the output:
+
+- **Pass a link that names one place**: Maps' Share button, a `maps.app.goo.gl` short link, or any `/maps/place/` URL. Photo-viewer links and `authuser=`-bearing links are fine too — what matters is that the URL still carries the place's feature id (`!1s0x…:0x…`), which the script hands to Chrome to resolve. Bare `/maps/search/` links only work when Maps collapses them to a single result; a search that stays a list, or a directions link, exits with a message asking for a place link.
+- **The photo list comes back nondeterministically.** The same request returns a lean payload (hero photo only) or a fuller one, so the script replays it many times over several page loads and unions the results. It can still finish short of what a signed-in browser shows. Re-running **accumulates** into the same folder rather than starting over, so run it again (or raise `--cycles` / `--tries`) if a place looks thin. If it still falls short, ask the user to Share → Copy link on the individual photos they want.
+- **Not every photo is usable, and the script does not judge.** Expect vendor stalls, parking lots, and selfies mixed in with the scenery. Never publish a photo of an identifiable private person, and skip anything that doesn't show the place. Read the signage in the photos too: a "Divieto di balneazione / No swimming" board is a fact about the route, and route text claiming otherwise needs fixing.
+- Captions in `gallery` should describe what is actually in the frame, not restate the route blurb.
+
 ## Styling
 
 Tailwind v4 via `@tailwindcss/vite` (no `tailwind.config.js`; `@import "tailwindcss"` in `src/index.css`). Colors are written as inline hex arbitrary values (`bg-[#FAF8F5]`, `text-[#B4643B]`) throughout the JSX; the warm Tuscan palette is also mirrored as CSS variables in `index.css`, and per-category color sets are duplicated in local helpers like `getCategoryTheme` in `RouteCard.tsx`. Match the surrounding hex-literal style rather than introducing a new theming layer. Leaflet's CSS and Google Fonts load from CDN in `index.html`.

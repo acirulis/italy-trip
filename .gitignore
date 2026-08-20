@@ -7,3 +7,6 @@ coverage/
 .env*
 !.env.example
 .claude/
+
+# raw Google Maps photo downloads (originals; downscale into public/images/ before committing)
+.maps-photos/
