@@ -488,6 +488,75 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     ],
   },
   {
+    id: 'ferrata-dei-ginepri-corno-grande',
+    title: 'Ferrata dei Ginepri (ex Brizio) — Corno Grande',
+    subtitle: 'The high traverse that links the two sides of the Gran Sasso, from Sella del Brecciaio to Sella dei Due Corni',
+    category: 'ferrata',
+    isPrimaryPick: true,
+    lat: 42.4710937,
+    lng: 13.5566055,
+    distanceKm: 253,
+    drivingTimeMin: 200,
+    curatedDrivingTimeMin: 200,
+    hikingTimeMin: 330,
+    trailDifficulty: 'Challenging',
+    elevationGainM: 780,
+    bestTimeToVisit: 'Mid-July to mid-September. Before then the snowfield in the Vallone dei Ginepri is still hard and continuous, which turns the crossing into an axe-and-crampons proposition rather than a ferrata',
+    description:
+      'The best of the Gran Sasso ferratas, and the one that actually goes somewhere: rather than climbing a tower for its own sake, the Ginepri is a high traverse cut across the western flank of Corno Grande that stitches the L’Aquila side of the massif to the Teramo side. From the top of the Campo Imperatore cable car you walk up past the Sella di Monte Aquila (2,423 m) to the Sella del Brecciaio at 2,506 m, and there the ironwork begins — roughly 800 m of cable, staples and short metal ladders running out across the head of the Vallone dei Ginepri to the Sella dei Due Corni at 2,547 m. It has a V-shaped profile rather than a climb: you descend a set of diagonal ledges into the vallone, cross a snowfield that survives most of the summer, then haul back up the far side, and for most of that hour and a quarter on the iron the ground simply drops away beneath your boots into the great grey trench between the two Corni. Technically it is modest — grade B, about 2 out of 5 — but the exposure is real and the position is genuinely alpine, with the north walls of the massif on one side and the Vallone drop on the other. It was rigged in the 1950s precisely as a link, so that climbers could reach Corno Piccolo from the south without going over the top of Corno Grande, and CAI Teramo took it over in the mid-1990s. In June 2023 that same section voted unanimously to strip the old name off it: the ferrata had been dedicated to Guido Brizio, a former president of the Rome CAI section who, under the 1938 racial laws, expelled non-Aryan members — among them Enrico Iannetta and his wife Agnese Ajò. The new name simply belongs to the ground it crosses, the Vallone dei Ginepri. The weathered stone sign at the Sella dei Due Corni still reads “X ESPERTI — VIA FERRATA GUIDO BRIZIO”, which makes the top of the route an oddly moving place to stand.',
+    highlights: [
+      'A true traverse rather than an up-and-down: 800 m of cable linking the Sella del Brecciaio to the Sella dei Due Corni across the head of the Vallone dei Ginepri',
+      'Sustained exposure over the trench between Corno Grande and Corno Piccolo — modest grade B climbing in a setting that feels like the Dolomites',
+      'The summer snowfield in the vallone, undercut and grey by August, crossed mid-route with the cable running along the rock beside it',
+      'The old CAI stone sign at the Sella dei Due Corni, still carrying the “Via Ferrata Guido Brizio” dedication that CAI Teramo retired in 2023',
+      'Continuation options that make this a serious day: Ferrata Danesi onwards to the summit of Corno Piccolo (2,655 m), or Ferrata Ricci back over Corno Grande',
+      'Rifugio Franchetti (2,433 m) on the Teramo side, reachable from the far end of the traverse for a drink before turning around',
+      'The same Campo Imperatore start as the Corno Grande walk — cable car up from Fonte Cerreto, semi-wild horses on the “Little Tibet” plateau',
+    ],
+    practicalTips: [
+      'Full via ferrata kit, no exceptions: helmet, harness, energy-absorbing lanyard set. The grade is easy but the route is traversing and exposed, so a slip means a pendulum rather than a sit-down.',
+      'As of August 2026 the line needs maintenance. Climbers have reported anchor pins pulled loose from the rock and hanging on the cable, plus stretches of cable that are damaged or slack enough to be a hazard, with the park authority yet to commission the repair. Check the current state with the Corno Grande refuges or a local guide before committing, and treat every anchor as suspect.',
+      'The snowfield in the vallone is the crux of the day, not the cables. Early in the season it is hard and continuous and wants an axe and crampons; by late summer it is undercut and rotten at the edges, which is its own problem. Look at it before you step on it, and be willing to turn back.',
+      'Reckon on about 5 hours 30 minutes and 13 km round trip from the top station — an hour and a quarter of approach, an hour and a quarter on the iron, and a long two and a half hours back.',
+      'Getting there is the same drive as Corno Grande: roughly 3 to 3.5 hours each way (A1, then A24 across the Apennines to the Assergi exit, then the SS17bis up to Fonte Cerreto). Take the funivia — seven minutes to the plateau — and check the last descent before you set off, or drive the road up to Campo Imperatore if the lift is down.',
+      'Be off the high ground by early afternoon. Storms build over Campo Imperatore almost daily in summer, there is no shelter on the traverse, and a wet cable strung across a limestone flank is not where you want to be caught.',
+      'No water anywhere after the top station bar, and patchy phone signal in the vallone — carry everything and leave your plan with someone.',
+      'If you continue on the Danesi to Corno Piccolo the day grows to around 1,000 m of ascent and needs an early start; the honest version for most parties is the traverse there and back.',
+    ],
+    photoUrl: '/images/ferrata-dei-ginepri/ferrata-dei-ginepri-climber-above-summer-snowfield.jpg',
+    googleMapsUrl:
+      'https://www.google.com/maps/place/Ferrata+dei+Ginepri+(ex+Brizio)/@42.4710937,13.5566055,15z/data=!4m6!3m5!1s0x1331d76c9dfd82b3:0x63357e140aec3701!8m2!3d42.4710937!4d13.5566055!16s%2Fg%2F11t6yyjrcx',
+    waypoints: [
+      {
+        name: 'Funivia del Gran Sasso (Arrivo a monte)',
+        lat: 42.4427489,
+        lng: 13.5576741,
+        icon: '🚠',
+        note: 'Cable car top station on Campo Imperatore at roughly 2,130 m — where the walk-in starts, via the Sella di Monte Aquila to the Sella del Brecciaio and the first cables. Last bar and last water before the traverse.',
+        googleMapsUrl:
+          'https://www.google.com/maps/place/Funivia+del+Gran+Sasso+(Arrivo+a+monte)/@42.4427528,13.5550992,17z/data=!3m1!4b1!4m6!3m5!1s0x1331d560501d3cbb:0x928f0fdcc0d6fb02!8m2!3d42.4427489!4d13.5576741!16s%2Fg%2F11hdxcqbrt!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D',
+      },
+    ],
+    gallery: [
+      {
+        url: '/images/ferrata-dei-ginepri/ferrata-dei-ginepri-climber-above-summer-snowfield.jpg',
+        caption: 'A climber clipped in at the edge of the summer snowfield in the Vallone dei Ginepri, the limestone trench dropping away towards the Teramo side',
+      },
+      {
+        url: '/images/ferrata-dei-ginepri/corno-grande-west-flank-with-rescue-helicopter.jpg',
+        caption: 'The layered western flank of Corno Grande above the vallone, a rescue helicopter working the ridge for scale',
+      },
+      {
+        url: '/images/ferrata-dei-ginepri/via-ferrata-guido-brizio-cai-stone-sign.jpg',
+        caption: 'The old CAI stone marker at the top of the route — “X esperti, via ferrata Guido Brizio”, arrow to the Sella dei Due Corni',
+      },
+      {
+        url: '/images/ferrata-dei-ginepri/vallone-dei-ginepri-undercut-snowfield.jpg',
+        caption: 'The snowfield undercut and hollowed where it meets the rock — the part of the crossing that needs judgement rather than technique',
+      },
+    ],
+  },
+  {
     id: 'sarteano-castle-and-borgo',
     title: 'Sarteano Castle & Etruscan Tomb of the Infernal Chariot',
     subtitle: '15th-century fortress, moat & ancient mystery right beside our base',
