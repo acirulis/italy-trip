@@ -52,13 +52,15 @@ The `@` path alias resolves to the project root (not `src/`), though current cod
 
 ## Git workflow
 
-Work is tracked in a **local-only** git repository on `main`. There is no remote — never attempt to push, and don't ask about one.
+**`main` is the only branch. Always work directly on `main`.** Never create a branch, never create a git worktree (including automated/cloud sessions — if a harness offers to isolate work in a worktree, decline and edit `main` in place), never rebase, and never amend or reorder earlier commits. If stray branches or worktrees ever appear, merge them back into `main` and delete them.
+
+The repo has one remote, `origin` (`github.com/acirulis/italy-trip`), and `main` there is what GitHub Pages deploys: `.github/workflows/deploy.yml` builds and publishes on every push to `main`. So a push to `main` is a production deploy — only push when the user asks.
 
 **Commit each finished feature as its own commit on `main`.** This is standing authorization: when a feature is complete and `npm run lint` passes, commit it without asking. Rules:
 
 - One commit per feature — not one per file, and not one bundle at the end of a session. If a session delivers three features, that's three commits.
 - Commit only when the feature actually works; don't commit a half-built state to "checkpoint" it.
-- Stay on `main`. Don't create branches, don't rebase, don't amend or reorder earlier commits.
+- Stay on `main` — see the single-branch rule above.
 - Run `npm run lint` before each commit; a failing type-check means the feature isn't finished.
 - Subject line names the user-visible feature (e.g. `Add GPX export to route detail modal`), not the files touched.
 - Leave unrelated in-progress edits out of the commit — stage the feature's files explicitly rather than `git add -A`.
