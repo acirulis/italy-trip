@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RouteImage } from '../types';
+import { withBasePath } from '../utils/assets';
 import { ChevronLeft, ChevronRight, Maximize2, X, Image as ImageIcon } from 'lucide-react';
 
 interface ImageGalleryProps {
@@ -35,7 +36,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
       list.unshift({ url: mainPhotoUrl, caption: title });
     }
 
-    return list;
+    return list.map((img) => ({ ...img, url: withBasePath(img.url) }));
   }, [gallery, mainPhotoUrl, title]);
 
   const [currentIndex, setCurrentIndex] = useState(0);

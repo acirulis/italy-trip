@@ -5,6 +5,10 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // Served from https://<user>.github.io/<repo>/ on GitHub Pages, so assets
+    // must be emitted with that prefix. Override with VITE_BASE_PATH (e.g. '/'
+    // for a custom domain or a user/organisation page).
+    base: process.env.VITE_BASE_PATH ?? '/italy-trip/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
