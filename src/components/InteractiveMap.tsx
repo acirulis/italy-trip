@@ -264,6 +264,54 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
       });
 
       group.addLayer(marker);
+
+      // 3. Secondary Waypoints (trailheads, lifts, huts) pinned alongside the destination
+      (route.waypoints ?? []).forEach((waypoint) => {
+        const waypointIcon = L.divIcon({
+          html: `
+            <div class="relative flex flex-col items-center cursor-pointer">
+              <div class="w-6 h-6 rounded-full ${categoryBg} ${isSelected ? 'ring-2 ring-[#B4643B]' : ''} border-2 border-white/90 shadow-sm flex items-center justify-center text-[10px] text-white opacity-95">
+                <span>${waypoint.icon ?? '📌'}</span>
+              </div>
+              <div class="mt-0.5 bg-white/90 backdrop-blur-xs text-[#6B665A] text-[9px] font-semibold px-1 py-0.5 rounded shadow-xs border border-[#E6E1D6] whitespace-nowrap max-w-[110px] truncate">
+                ${waypoint.name}
+              </div>
+            </div>
+          `,
+          className: 'custom-waypoint-marker',
+          iconSize: [24, 24],
+          iconAnchor: [12, 12],
+          popupAnchor: [0, -14],
+        });
+
+        const waypointMarker = L.marker([waypoint.lat, waypoint.lng], { icon: waypointIcon });
+        const waypointWaze = getWazeUrl(waypoint.lat, waypoint.lng);
+        const waypointGmaps = getGoogleMapsDirUrl(
+          baseLocation.lat,
+          baseLocation.lng,
+          waypoint.lat,
+          waypoint.lng,
+          waypoint.googleMapsUrl
+        );
+
+        waypointMarker.bindPopup(`
+          <div class="p-3 max-w-xs font-sans">
+            <div class="text-[9px] font-bold uppercase tracking-wider text-[#9E988A] mb-1">Waypoint &bull; ${route.title}</div>
+            <h4 class="font-bold text-sm text-[#333028] font-display leading-tight mb-1">${waypoint.icon ?? '📌'} ${waypoint.name}</h4>
+            ${waypoint.note ? `<p class="text-xs text-[#6B665A] mb-2.5">${waypoint.note}</p>` : ''}
+            <div class="grid grid-cols-2 gap-1.5">
+              <a href="${waypointWaze}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1 bg-[#00A0DC] hover:bg-[#008CBE] text-white text-[11px] font-bold py-1.5 px-2 rounded-lg transition">
+                <span>Waze Nav</span>
+              </a>
+              <a href="${waypointGmaps}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1 bg-[#607B57] hover:bg-[#4F6847] text-white text-[11px] font-semibold py-1.5 px-2 rounded-lg transition">
+                <span>Google Maps</span>
+              </a>
+            </div>
+          </div>
+        `, { className: 'custom-popup' });
+
+        group.addLayer(waypointMarker);
+      });
     });
   }, [baseLocation, routes, selectedRouteId]);
 

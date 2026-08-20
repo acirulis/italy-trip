@@ -233,6 +233,61 @@ export const RouteDetailModal: React.FC<RouteDetailModalProps> = ({
             </div>
           )}
 
+          {/* Key Waypoints (trailheads, lifts, huts) */}
+          {route.waypoints && route.waypoints.length > 0 && (
+            <div>
+              <h4 className="text-xs font-bold text-[#9E988A] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#B4643B]" />
+                Key Waypoints On This Route
+              </h4>
+              <ul className="space-y-2">
+                {route.waypoints.map((waypoint, idx) => (
+                  <li
+                    key={idx}
+                    className="flex flex-wrap items-start justify-between gap-2 bg-[#FAF8F5] p-3 rounded-lg border border-[#EFECE4]"
+                  >
+                    <div className="min-w-[180px] flex-1">
+                      <div className="text-sm font-semibold text-[#333028] flex items-center gap-1.5">
+                        <span>{waypoint.icon ?? '📌'}</span>
+                        <span>{waypoint.name}</span>
+                      </div>
+                      {waypoint.note && (
+                        <p className="text-xs text-[#6B665A] mt-1 leading-relaxed">{waypoint.note}</p>
+                      )}
+                      <div className="font-mono text-[10px] text-[#9E988A] mt-1">
+                        {waypoint.lat.toFixed(6)}° N, {waypoint.lng.toFixed(6)}° E
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <a
+                        href={getWazeUrl(waypoint.lat, waypoint.lng)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-[#00A0DC] hover:bg-[#008CBE] text-white text-[11px] font-bold py-1.5 px-2.5 rounded-lg transition"
+                      >
+                        Waze
+                      </a>
+                      <a
+                        href={getGoogleMapsDirUrl(
+                          baseLocation.lat,
+                          baseLocation.lng,
+                          waypoint.lat,
+                          waypoint.lng,
+                          waypoint.googleMapsUrl
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-[#607B57] hover:bg-[#4F6847] text-white text-[11px] font-semibold py-1.5 px-2.5 rounded-lg transition"
+                      >
+                        Maps
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Practical Tips & Parking Advice */}
           {route.practicalTips.length > 0 && (
             <div className="bg-[#FBF0E8] p-4 rounded-xl border border-[#ECD4C3]">
