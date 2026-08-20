@@ -73,7 +73,7 @@ export const DEFAULT_ROUTES: RouteItem[] = [
     practicalTips: [
       'Park near Ponte di Spugna (North Entrance) or near Gracciano (South Entrance by San Marziale bridge).',
       'Wear water shoes or sturdy trainers with good grip—river stones and wood can be wet and slippery.',
-      'Swimming is permitted in designated river pools; water is refreshingly cool year-round.',
+      'Bathing is not universally allowed: “Divieto di balneazione / No swimming” signs are posted along parts of the river, including near the pools — check the signage where you stop rather than assuming a pool is open for a dip.',
       'Completely free public access 24/7 along the 4km protected river pathway.',
     ],
     googleMapsUrl:
@@ -87,6 +87,22 @@ export const DEFAULT_ROUTES: RouteItem[] = [
       {
         url: '/images/sentierelsa/diborrato-waterfall-cascata.jpg',
         caption: 'Cascata del Diborrato: iconic 15-meter waterfall plunging into the deep blue "Il Pozzone" natural swimming pool',
+      },
+      {
+        url: '/images/sentierelsa/sentierelsa-travertine-terraced-pools.jpg',
+        caption: 'Travertine steps below the trail: the Elsa spilling over terraced limestone shelves into milky turquoise basins',
+      },
+      {
+        url: '/images/sentierelsa/sentierelsa-stepping-stones-rapids-crossing.jpg',
+        caption: 'The attraversamento su massi seen along its length — a line of limestone blocks and a guide rope carrying the path across the rapids',
+      },
+      {
+        url: '/images/sentierelsa/sentierelsa-limestone-boulder-rapids.jpg',
+        caption: 'A travertine boulder mid-river, with the Elsa breaking white around it into deep green pools',
+      },
+      {
+        url: '/images/sentierelsa/sentierelsa-trail-map-information-board.jpg',
+        caption: 'The official “Il Sentierelsa” board at the entrance: the full 4km route with numbered points of interest, from the Callone Reale to the Cascata del Diborrato',
       },
     ],
   },
