@@ -798,4 +798,93 @@ export const DEFAULT_ROUTES: RouteItem[] = [
       },
     ],
   },
+  {
+    id: 'cala-del-corvo-giglio',
+    title: 'Cala del Corvo — Isola del Giglio',
+    subtitle: 'A boat-only cove in the Tuscan Archipelago: granite walls, a swimmable sea cave, red gravel',
+    category: 'viewpoint',
+    isPrimaryPick: true,
+    lat: 42.339377,
+    lng: 10.8938617,
+    distanceKm: 152,
+    drivingTimeMin: 130,
+    curatedDrivingTimeMin: 255,
+    trailDifficulty: 'Moderate',
+    bestTimeToVisit: 'Mid-June to mid-September, when the water is warm enough to spend an hour in it and the boat hire and cove-tour operators at Giglio Porto and Campese are all running. Avoid the 6–27 August window if you want to bring the car across — the island restricts vehicle transport to stays of several nights in that fortnight. A Tramontana or Grecale blowing from the north makes the cove choppy and the cave unpleasant; every other wind leaves it sheltered',
+    description:
+      'The one that needs a boat. Cala del Corvo sits on the wild southwestern flank of Isola del Giglio, the granite island in the Tuscan Archipelago that most people know only as the place the Costa Concordia went over in 2012 — which is a shame, because the island is a 21 km² lump of pink-grey granite with some of the clearest water in Italy around it. The cala takes its name from the Scoglio del Corvo just off the western slope, a rock that from the right angle reads as a hunched raven. The cove itself is about 60 m of pebble and coarse red gravel at the foot of a cleft in the cliffs, with a low sea cave at the back that you can swim straight into, and no road, path, or staircase reaching it from above: the guidebooks that mention a trail are wrong, and the ones that say “only from the sea” are right. That constraint is the whole appeal. Even in August the cove holds a handful of anchored boats rather than a beach crowd, and the water sits in that improbable band of turquoise-over-granite that photographs as if the colour has been pushed. Underwater it is one of the better spots on the island for masks and fins — granite boulders piled into a rockfall, crevices with lobster, scorpionfish and moray, and further out and deeper the red Paramuricea gorgonians that Giglio’s dive boats come for from 20 m down. Getting here is a genuine expedition from a Val d’Orcia base: roughly two hours of driving to Porto Santo Stefano on the Monte Argentario, an hour on the ferry to Giglio Porto, then a hired dinghy or a place on one of the island’s cove tours around to the southwest coast. Budget the whole day, or better, sleep on the island.',
+    highlights: [
+      'A cove reachable only by sea — no trail, no steps, and therefore no crowd even in high season',
+      'The low sea cave at the back of the cala, shallow enough to swim into and out of on a calm day',
+      'Coarse red gravel and pebble rather than sand, with the water turning from glass-clear to deep blue within a few metres of the shore',
+      'Snorkelling over piled granite boulders — lobster and moray in the crevices, red gorgonians deeper out towards the Scoglio del Corvo',
+      'Sheltered from almost every wind except the northerly Tramontana and Grecale, so it is often calm when the rest of the coast is not',
+      'The ferry crossing and the drive round the Argentario are half the day out: Porto Santo Stefano, Giglio Porto and the walled Giglio Castello on the ridge above',
+    ],
+    practicalTips: [
+      'There is no land access. Hire a small boat or dinghy at Giglio Porto or Campese (no licence needed for the small engines), or book a seat on one of the giro delle calette boat tours, which stop here as a matter of course.',
+      'Sequence and timing: about 2 hours 10 minutes driving from base to the ferry quay at Porto Santo Stefano, an hour across to Giglio Porto, then 25–40 minutes on the water round the south of the island. The ~4h15 figure on this card is the whole door-to-cove chain, not just the drive.',
+      'Book the ferry ahead in July and August — Maregiglio and Toremar both run the route, roughly every 30–60 minutes in summer. Taking the car across is allowed for most of the season but is restricted in the 6–27 August window to stays of several nights; leaving the car at Porto Santo Stefano and hiring a scooter on the island is simpler.',
+      'Bring everything: no bar, no toilet, no shade, no fresh water, and no phone signal worth relying on in the cleft. Water shoes are worth it — the gravel is coarse and the entry is over rounded stones.',
+      'Only enter the cave when the sea is flat. A small swell turns a two-metre-high cave mouth into a hazard, and the same north winds that make the cove choppy are the ones to check the forecast for.',
+      'The cliffs face roughly west, so the cove is in shadow in the early morning and gets full sun through the afternoon — the light on the water is best from late morning onwards.',
+      'This is a national-park island (Parco Nazionale dell’Arcipelago Toscano): take nothing off the seabed, anchor on sand rather than seagrass, and carry your rubbish back to the boat.',
+    ],
+    photoUrl: '/images/cala-del-corvo-giglio/cala-del-corvo-sea-cave-mouth-under-granite-cliffs.jpg',
+    googleMapsUrl:
+      'https://www.google.com/maps/place/Cala+del+Corvo/@42.339377,10.8784483,15z/data=!4m6!3m5!1s0x132815fc28a85355:0xeca29cb6f0486267!8m2!3d42.339377!4d10.8938617!16s%2Fg%2F11csb03nvq',
+    waypoints: [
+      {
+        name: 'Porto Santo Stefano ferry quay',
+        lat: 42.4338317,
+        lng: 11.1237128,
+        icon: '⛴️',
+        note: 'Where the drive ends and the crossing starts — about 2 hours 10 minutes from base, then an hour on the water to Giglio Porto',
+      },
+      {
+        name: 'Giglio Porto',
+        lat: 42.3571574,
+        lng: 10.9224837,
+        icon: '🚤',
+        note: 'The island’s harbour and the place to hire a dinghy or join a cove tour round to the southwest coast',
+      },
+      {
+        name: 'Giglio Castello',
+        lat: 42.3665063,
+        lng: 10.9002704,
+        icon: '🏰',
+        note: 'The walled medieval village on the ridge above the port — the obvious stop for lunch or dinner on either side of the boat trip',
+      },
+    ],
+    gallery: [
+      {
+        url: '/images/cala-del-corvo-giglio/cala-del-corvo-sea-cave-mouth-under-granite-cliffs.jpg',
+        caption: 'The dark cave mouth at the head of the cala, set into the pale granite walls above deep blue water',
+      },
+      {
+        url: '/images/cala-del-corvo-giglio/cala-del-corvo-cave-and-turquoise-shallows.jpg',
+        caption: 'Streaked granite dropping into turquoise shallows, with the cave opening at the waterline',
+      },
+      {
+        url: '/images/cala-del-corvo-giglio/cala-del-corvo-granite-cleft-above-deep-blue-water.jpg',
+        caption: 'The cleft in the cliff face that forms the cove, boulders piled at its foot',
+      },
+      {
+        url: '/images/cala-del-corvo-giglio/cala-del-corvo-boat-anchored-below-the-macchia-slopes.jpg',
+        caption: 'A small boat anchored off the shore, macchia-covered slopes rising behind — the only way in',
+      },
+      {
+        url: '/images/cala-del-corvo-giglio/cala-del-corvo-clear-water-over-granite-seabed.jpg',
+        caption: 'Looking down from the boat over the granite seabed, a swimmer out towards the point',
+      },
+      {
+        url: '/images/cala-del-corvo-giglio/giglio-rocky-shore-and-surf.jpg',
+        caption: 'Surf breaking through the granite on the exposed side of the island',
+      },
+      {
+        url: '/images/cala-del-corvo-giglio/giglio-south-coast-cliffs-at-golden-hour.jpg',
+        caption: 'The southern cliffs of Giglio in late afternoon light, clear water over rock in the foreground',
+      },
+    ],
+  },
 ];
