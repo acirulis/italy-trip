@@ -13,7 +13,6 @@ interface InteractiveMapProps {
   activePolylineCoordinates?: [number, number][];
   activeDistanceKm?: number;
   activeDurationMin?: number;
-  onMapClickCoordinates?: (coords: { lat: number; lng: number }) => void;
 }
 
 const TILE_CONFIG: Record<
@@ -55,7 +54,6 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
   activePolylineCoordinates,
   activeDistanceKm,
   activeDurationMin,
-  onMapClickCoordinates,
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -87,13 +85,6 @@ export const InteractiveMap: React.FC<InteractiveMapProps> = ({
     markersGroupRef.current = L.layerGroup().addTo(map);
     startEndMarkersRef.current = L.layerGroup().addTo(map);
     mapInstanceRef.current = map;
-
-    // Handle map click for custom waypoint or coordinate inspection
-    map.on('click', (e: L.LeafletMouseEvent) => {
-      if (onMapClickCoordinates) {
-        onMapClickCoordinates({ lat: e.latlng.lat, lng: e.latlng.lng });
-      }
-    });
 
     return () => {
       map.remove();

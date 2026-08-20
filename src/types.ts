@@ -30,7 +30,6 @@ export interface RouteItem {
   appleMapsUrl?: string;
   photoUrl?: string;
   gallery?: (string | RouteImage)[];
-  isUserCreated?: boolean;
   isPrimaryPick?: boolean;
 }
 

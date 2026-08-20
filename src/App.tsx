@@ -11,7 +11,6 @@ import { LivingBaseCard } from './components/LivingBaseCard';
 import { InteractiveMap } from './components/InteractiveMap';
 import { RouteCard } from './components/RouteCard';
 import { RouteDetailModal } from './components/RouteDetailModal';
-import { AddRouteModal } from './components/AddRouteModal';
 import { fetchDrivingRouteCoordinates, estimateDrivingDistanceAndMinutes } from './utils/navigation';
 import { 
   Search, 
@@ -28,7 +27,7 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  // 1. Persistent State for Living Base Location & Custom Routes
+  // 1. Persistent State for Living Base Location & Routes
   const [baseLocation, setBaseLocation] = useState<BaseLocation>(() => {
     const saved = localStorage.getItem('italy_base_location');
     if (saved) {
@@ -47,7 +46,7 @@ export default function App() {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Merge default routes with latest gallery/photo definitions, while preserving user routes
+          // Merge saved routes over the curated defaults; curated fields below stay authoritative
           const merged = DEFAULT_ROUTES.map((defaultItem) => {
             const savedItem = parsed.find((p: RouteItem) => p.id === defaultItem.id);
             if (savedItem) {
@@ -71,9 +70,7 @@ export default function App() {
             return defaultItem;
           });
 
-          // Add any custom user-created routes
-          const userRoutes = parsed.filter((p: RouteItem) => p.isUserCreated && !DEFAULT_ROUTES.some((d) => d.id === p.id));
-          return [...merged, ...userRoutes];
+          return merged;
         }
       } catch {
         // ignore parse error
@@ -91,10 +88,8 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'distance' | 'time' | 'alphabetical'>('distance');
 
-  // 3. Modals State
+  // 3. Modal State
   const [detailModalRoute, setDetailModalRoute] = useState<RouteItem | null>(null);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [mapClickedCoords, setMapClickedCoords] = useState<{ lat: number; lng: number } | null>(null);
 
   // Save changes to local storage
   useEffect(() => {
@@ -191,38 +186,10 @@ export default function App() {
       });
   }, [routes, selectedCategory, searchQuery, sortBy]);
 
-  // Add Custom Route Handler
-  const handleAddRoute = (newRoute: RouteItem) => {
-    setRoutes((prev) => [newRoute, ...prev]);
-    setSelectedRouteId(newRoute.id);
-    handleSelectRoute(newRoute.id);
-  };
-
-  // Delete User Route Handler
-  const handleDeleteUserRoute = (id: string) => {
-    setRoutes((prev) => prev.filter((r) => r.id !== id));
-    if (selectedRouteId === id) {
-      setSelectedRouteId(null);
-      setActivePolyline([]);
-    }
-  };
-
-  // Handle map click to prefill add custom spot
-  const handleMapClickCoordinates = (coords: { lat: number; lng: number }) => {
-    setMapClickedCoords(coords);
-    setIsAddModalOpen(true);
-  };
-
   return (
     <div className="min-h-screen bg-[#FAF8F5] flex flex-col text-[#333028] selection:bg-[#FBF0E8] selection:text-[#B4643B]">
       {/* Top Header */}
-      <Header
-        totalRoutes={routes.length}
-        onOpenAddModal={() => {
-          setMapClickedCoords(null);
-          setIsAddModalOpen(true);
-        }}
-      />
+      <Header />
 
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
@@ -249,9 +216,6 @@ export default function App() {
                 (Click any route pin or card to trace road trajectory)
               </span>
             </div>
-            <div className="text-xs text-[#6B665A]">
-              Tip: Click anywhere on map to add a custom waypoint
-            </div>
           </div>
 
           <div className="h-[460px] sm:h-[520px] w-full">
@@ -269,7 +233,6 @@ export default function App() {
               activePolylineCoordinates={activePolyline}
               activeDistanceKm={activeDistanceKm}
               activeDurationMin={activeDurationMin}
-              onMapClickCoordinates={handleMapClickCoordinates}
             />
           </div>
         </section>
@@ -412,7 +375,6 @@ export default function App() {
                   isSelected={selectedRouteId === route.id}
                   onSelect={(id) => handleSelectRoute(id)}
                   onOpenDetails={(r) => setDetailModalRoute(r)}
-                  onDeleteUserRoute={handleDeleteUserRoute}
                 />
               ))}
             </div>
@@ -439,27 +401,13 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Modal 1: Route Guide & Tips Detail Modal */}
+      {/* Route Guide & Tips Detail Modal */}
       {detailModalRoute && (
         <RouteDetailModal
           route={detailModalRoute}
           baseLocation={baseLocation}
           onClose={() => setDetailModalRoute(null)}
           onSelectOnMap={(id) => handleSelectRoute(id)}
-        />
-      )}
-
-      {/* Modal 2: Add Custom Route / Spot Modal */}
-      {isAddModalOpen && (
-        <AddRouteModal
-          baseLat={baseLocation.lat}
-          baseLng={baseLocation.lng}
-          initialCoords={mapClickedCoords}
-          onClose={() => {
-            setIsAddModalOpen(false);
-            setMapClickedCoords(null);
-          }}
-          onAddRoute={handleAddRoute}
         />
       )}
     </div>

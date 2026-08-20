@@ -22,7 +22,6 @@ interface RouteCardProps {
   isSelected: boolean;
   onSelect: (routeId: string) => void;
   onOpenDetails: (route: RouteItem) => void;
-  onDeleteUserRoute?: (id: string) => void;
 }
 
 export const RouteCard: React.FC<RouteCardProps> = ({
